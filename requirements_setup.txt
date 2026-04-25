@@ -1,0 +1,5 @@
+requests>=2.31.0
+tqdm>=4.66.0
+elasticsearch>=8.13.0
+langchain-elasticsearch>=0.3.0
+langchain-core>=0.3.0
