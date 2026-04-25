@@ -1,8 +1,10 @@
 __pycache__/
+banco_chroma/
+chunks/
 *.pyc
 *.pyo
 *.pyd
-
-.env
+*.venv
+*.env
 .venv/
 venv/

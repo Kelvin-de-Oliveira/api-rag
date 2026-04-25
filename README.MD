@@ -68,12 +68,13 @@ Acesse:
 
 `POST /perguntar`
 
-Exemplo com `curl`:
+Exemplo com `curl` no terminal Windows:
 
 ```bash
-curl -X POST http://localhost:8000/perguntar \
-  -H "Content-Type: application/json" \
-  -d "{\"pergunta\": \"Qual a decisão do Despacho 244 sobre a UG2 da CGH Wasser Kraft?\"}"
+curl -X POST http://localhost:8000/perguntar ^
+     -H "Content-Type: application/json" ^
+     -d "{\"pergunta\": \"Qual a decisão do Despacho 244 sobre a UG2 da CGH Wasser Kraft?\"}"
+
 ```
 
 Resposta:
