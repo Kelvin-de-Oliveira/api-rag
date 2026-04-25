@@ -10,6 +10,8 @@ Os scripts que geram os dados usados por esta API (chunking dos documentos, gera
 
 🔗 **Repositório do pipeline de ingestão:** <[Desafio_RAG_NLP](https://github.com/joaopauloCand/Desafio_RAG_NLP.git)>
 
+🔗 **Todos os dados utilizados aqui podem ser encontrados em:** ([dataset_huggingface](https://huggingface.co/datasets/joaopauloCand/Embeddings_RAG_ANEEL/tree/main))
+
 Esses scripts foram executados **uma única vez** para gerar os artefatos disponibilizados no Hugging Face e baixados pelo `prepare_data.py`. Não são necessários para rodar esta API. O repositório foi preservado para fins de documentação e reprodutibilidade do pipeline completo.
 
 
