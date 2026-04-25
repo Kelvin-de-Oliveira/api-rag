@@ -109,6 +109,21 @@ Resposta:
 }
 ```
 
+### Interface local com Streamlit (extra opcional)
+
+Se voce quiser um chatbot local para conversar com o RAG de forma mais pratica, use o modulo opcional em `chatRAG/`.
+
+```bash
+pip install -r chatRAG/requirements.txt
+python -m streamlit run chatRAG/chatRAG.py
+```
+
+Depois abra no navegador o endereco mostrado pelo Streamlit (normalmente http://localhost:8501).
+
+No painel lateral da interface, mantenha a URL base da API como `http://localhost:8000` (ou ajuste para o host/porta em uso).
+
+> Esse chatbot e apenas um extra de conveniencia: nao e necessario para o funcionamento da API.
+
 ### Outros endpoints
 
 - `GET /health` — verifica o estado de cada componente (ChromaDB, Elasticsearch, Gemini)
@@ -118,6 +133,10 @@ Resposta:
 
 ```
 rag-aneel/
+├── chatRAG/                   # Chatbot Streamlit opcional para consumir a API
+│   ├── chatRAG.py             # Interface local de conversa com o RAG
+│   ├── requirements.txt       # Dependencias exclusivas do chatbot
+│   └── README.md              # Instrucoes do modulo ChatRAG
 ├── app/                       # Código da API (FastAPI)
 │   ├── main.py                # Rotas e lifespan
 │   ├── rag_service.py         # Lógica do RAG
