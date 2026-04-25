@@ -1,0 +1,59 @@
+# docker-compose.yml — orquestra a API e o Elasticsearch num único comando.
+#
+# Uso:
+#   docker-compose up -d        # sobe tudo em background
+#   docker-compose logs -f api  # acompanha logs da API
+#   docker-compose down         # para tudo (mantém volumes/dados)
+#   docker-compose down -v      # para tudo E apaga os dados do ES
+
+services:
+  # ============================================================
+  # Elasticsearch — banco lexical (BM25)
+  # ============================================================
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: rag-aneel-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false   #nosso contexto permite by:kelvin
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+      start_period: 60s
+
+  # ============================================================
+  # API — FastAPI + RAG
+  # ============================================================
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-aneel-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_INDEX_NAME=aneel_lexical
+      - DIRETORIO_CHROMA=/app/banco_chroma
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./banco_chroma:/app/banco_chroma
+      - ./chunks:/app/chunks
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    restart: unless-stopped
+
+# ============================================================
+# Volumes 
+# ============================================================
+volumes:
+  es_data:
+    driver: local
