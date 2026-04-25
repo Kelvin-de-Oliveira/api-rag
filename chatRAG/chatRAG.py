@@ -10,23 +10,46 @@ def formatar_fontes(fontes: list[dict]) -> str:
     if not fontes:
         return "Sem fontes retornadas pela API."
 
-    linhas: list[str] = []
-    for idx, fonte in enumerate(fontes, start=1):
-        titulo = fonte.get("titulo") or "Sem titulo"
-        url = fonte.get("url") or ""
-        data_publicacao = fonte.get("data_publicacao") or ""
-        id_processo = fonte.get("id_processo") or ""
-        trecho = (fonte.get("trecho") or "").strip()
+    fontes_unicas: dict[tuple[str, str, str], dict] = {}
 
-        linhas.append(f"{idx}. **{titulo}**")
+    for fonte in fontes:
+        id_processo = (fonte.get("id_processo") or "").strip()
+        data_publicacao = (fonte.get("data_publicacao") or "").strip()
+        url = (fonte.get("url") or "").strip()
+        indices_citacao = fonte.get("indices_citacao") or []
+
+        chave = (id_processo.lower(), data_publicacao, url.lower())
+
+        if chave not in fontes_unicas:
+            fontes_unicas[chave] = {
+                "id_processo": id_processo,
+                "data_publicacao": data_publicacao,
+                "url": url,
+                "indices_citacao": [],
+            }
+
+        indices_existentes = fontes_unicas[chave]["indices_citacao"]
+        for indice in indices_citacao:
+            if indice not in indices_existentes:
+                indices_existentes.append(indice)
+
+    linhas: list[str] = []
+    for idx, fonte in enumerate(fontes_unicas.values(), start=1):
+        id_processo = fonte["id_processo"]
+        data_publicacao = fonte["data_publicacao"]
+        url = fonte["url"]
+        indices_citacao = fonte["indices_citacao"]
+
+        linhas.append(f"{idx}.")
         if id_processo:
             linhas.append(f"- Processo: {id_processo}")
         if data_publicacao:
             linhas.append(f"- Data: {data_publicacao}")
         if url:
             linhas.append(f"- URL: {url}")
-        if trecho:
-            linhas.append(f"- Trecho: {trecho}")
+        if indices_citacao:
+            indices_formatados = ", ".join(f"[{indice}]" for indice in indices_citacao)
+            linhas.append(f"- Indices de citacao: {indices_formatados}")
 
     return "\n".join(linhas)
 

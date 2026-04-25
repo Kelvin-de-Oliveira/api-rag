@@ -122,7 +122,7 @@ Depois abra no navegador o endereco mostrado pelo Streamlit (normalmente http://
 
 No painel lateral da interface, mantenha a URL base da API como `http://localhost:8000` (ou ajuste para o host/porta em uso).
 
-> Esse chatbot e apenas um extra de conveniencia: nao e necessario para o funcionamento da API.
+> Esse chatbot é apenas um extra para conveniência, não é necessário para o funcionamento da API.
 
 ### Outros endpoints
 
