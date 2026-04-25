@@ -177,9 +177,9 @@ docker-compose restart api           # Reinicia só a API
 
 **Erro ao iniciar a API: `GEMINI_API_KEY não configurada`?** O arquivo `.env` não foi criado ou está com a chave em branco. Confira o passo 2.
 
-**`docker-compose up` falha?** Confira se o Docker Desktop está rodando e se as portas 8000 e 9200 estão livres.
+**O `docker-compose up` falha?** Confira se o Docker Desktop está rodando e se as portas 8000 e 9200 estão livres.
 
-**`prepare_data.py` falha no download**
+**O `prepare_data.py` falha no download?**
 - Confira sua conexão com a internet
 - Apague os arquivos parciais (`banco_chroma.zip`, `chunks.zip`) e rode novamente — o script retoma do zero
 
