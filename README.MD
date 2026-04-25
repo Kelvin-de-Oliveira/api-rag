@@ -1,6 +1,17 @@
 # API RAG ANEEL
 
-API REST que responde perguntas sobre Despachos e documentos da ANEEL utilizando RAG (Retrieval-Augmented Generation) com busca híbrida (vetorial + lexical) e geração via Google Gemini.
+API REST que responde perguntas sobre Despachos e documentos da ANEEL utilizando RAG (Retrieval-Augmented Generation) com busca híbrida (vetorial + lexical) e geração via 
+Google Gemini.
+
+
+## Scripts originais (geração dos dados)
+
+Os scripts que geram os dados usados por esta API (chunking dos documentos, geração de embeddings com Gemini, ingestão inicial no ChromaDB e no Elasticsearch) estão em um repositório separado:
+
+🔗 **Repositório do pipeline de ingestão:** <[Desafio_RAG_NLP](https://github.com/joaopauloCand/Desafio_RAG_NLP.git)>
+
+Esses scripts foram executados **uma única vez** para gerar os artefatos disponibilizados no Hugging Face e baixados pelo `prepare_data.py`. Não são necessários para rodar esta API. O repositório foi preservado para fins de documentação e reprodutibilidade do pipeline completo.
+
 
 ## Pré-requisitos
 
@@ -149,16 +160,6 @@ rag-aneel/
                                       │  (embed + gen)    │
                                       └───────────────────┘
 ```
-
-
-
-## Scripts originais (geração dos dados)
-
-Os scripts que geram os dados usados por esta API (chunking dos documentos, geração de embeddings com Gemini, ingestão inicial no ChromaDB e no Elasticsearch) estão em um repositório separado:
-
-🔗 **Repositório do pipeline de ingestão:** <[Desafio_RAG_NLP](https://github.com/joaopauloCand/Desafio_RAG_NLP.git)>
-
-Esses scripts foram executados **uma única vez** para gerar os artefatos disponibilizados no Hugging Face e baixados pelo `prepare_data.py`. Não são necessários para rodar esta API. O repositório foi preservado para fins de documentação e reprodutibilidade do pipeline completo.
 
 
 
