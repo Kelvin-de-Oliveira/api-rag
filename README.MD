@@ -31,11 +31,10 @@ git clone https://github.com/kelvin-de-oliveira/api-rag
 cd api-rag
 ```
 
-### 2. Configure a chave da API do Gemini
+### 2. Configure a chave da API do Gemini 
 
-```bash
-cp .env.example .env
-```
+Command Prompt (CMD): Use `copy .env.example .env.`
+PowerShell: Use `cp .env.example .env ou Copy-Item .env.example .env`
 
 Abra o arquivo `.env` e substitua o valor de `GEMINI_API_KEY` pela sua chave.
 
