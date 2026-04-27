@@ -33,9 +33,15 @@ cd api-rag
 
 ### 2. Configure a chave da API do Gemini 
 
-Command Prompt (CMD): Use `copy .env.example .env.`
-PowerShell: Use `cp .env.example .env ou Copy-Item .env.example .env`
-
+No Command Prompt (CMD):
+```bash
+cp .env.example .env
+copy .env.example .env.
+```
+No PowerShell:
+```bash
+copy .env.example .env.
+```
 Abra o arquivo `.env` e substitua o valor de `GEMINI_API_KEY` pela sua chave.
 
 ### 3. Suba a infraestrutura (API + Elasticsearch)
