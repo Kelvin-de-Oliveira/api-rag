@@ -36,7 +36,6 @@ cd api-rag
 No Command Prompt (CMD):
 ```bash
 cp .env.example .env
-copy .env.example .env.
 ```
 No PowerShell:
 ```bash
